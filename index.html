@@ -1,105 +1,185 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-        <title>Flexbox demo</title>
-        <style>
-            .wrapper {
-                max-width:60em;
-                position:relative;
-                margin:20px auto;
-            }
-            
-            .row {
-                display:flex;
-                min-height:2.5em;
-            }
-            
-            .meta {
-                background:blue;
-            }
-            
-            .logo {
-                background: navy; 
-            }
-            
-            .nav {
-             background: #ddd;   
-            }
-            
-            .nav > .lynx {
-                border: 2px solid #333;
-                padding:.25em;
-                flex-grow:1;
-            }
-            
-            .hero {
-                height: 325px;
-                background:maroon;
-            }
-            
-            .feature .feature-pic {
-               width:100%;
-               height:auto;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="wrapper">
-            <div class="row meta">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Flexbox Demo</title>
+  <style>
 
-            </div>
+    html, body {
+      margin:0;
+      padding:0;
+    }
 
-            <div class="row logo">
-            </div>
+    .wrapper {
+      max-width:60em;
+      position:relative;
+      margin:0px auto;
+    }
 
-            <div class="row nav">
-                <div class="lynx">Diamonds</div>
-                <div class="lynx">Engagement Rings</div>
-                <div class="lynx">Wedding</div>
-                <div class="lynx">Jewelry &amp; Gifts</div>
-                <div class="lynx">Designers</div>
-                <div class="lynx">Education</div>
-            </div>
+    /* adding flex to a container allows its nested elements
+    * to behave like flex children */
+    .row {
+      display:flex;
+      min-height:2.5em;
+    }
 
-            <div class="hero"></div>
+    /* essentailly "floats" the nested search form to the right */
+    .meta {
+      flex-direction:row-reverse;
+    }
 
-            <div class="row">
+    .meta .search fieldset {
+      border:none;
+    }
+    
+    .meta, footer {
+      background:#007722;
+    }
+    
+    .logo {
+      background: #229944;
+    }
+    
+    /* allows nav links to wrap when window width shrinks */
+    .main-nav {
+     flex-wrap:wrap;   
+   }
 
-                <div class="feature">
-                    <h3>Diamond Jewelry</h3>
-                    <img class="feature-pic" src="pic1.jpg" alt="jewels" />
-                    <ul>
-                        <li>Build Your Own Earrings®</li>
-                        <li>Build Your Own Diamond Pendant®</li>
-                        <li>Pre-set Diamond Stud Earrings from $250</li>
-                    </ul>
-                </div>
+    /* flex-grow is a value that sets the items to
+    * each grow to fill the width of the parent
+    * each child can have a value that is proportional to its siblings */
+    .main-nav > .lnk {
+      display:flex;
+      flex-grow:1;
+      flex-wrap:wrap;
+      flex-basis:9em;
 
-                <div class="feature">
-                    <h3>Diamond Jewelry</h3>
-                    <img class="feature-pic" src="pic1.jpg" alt="jewels" />
-                    <ul>
-                        <li>Build Your Own Earrings®</li>
-                        <li>Build Your Own Diamond Pendant®</li>
-                        <li>Pre-set Diamond Stud Earrings from $250</li>
-                    </ul>
-                </div>
+      border: 1px solid #888;
+      padding:.25em;
+      background:#333;
+      color:#fff;
+      min-height:2.5em;
+      font: 500 .85em/1.2 sans-serif;
+      text-decoration:none;
+    }
+    
+    /* flex children can be centered BOTH horizontally
+    * AND vertically by simply setting margins to auto */
+    .lnk span {
+      margin:auto;
+    }
+    
+    .hero {
+      height: 325px;
+      background:#555;
+      margin:0;
+    }
 
-                <div class="feature">
-                    <h3>Diamond Jewelry</h3>
-                    <img class="feature-pic" src="pic1.jpg" alt="jewels" />
-                    <ul>
-                        <li>Build Your Own Earrings®</li>
-                        <li>Build Your Own Diamond Pendant®</li>
-                        <li>Pre-set Diamond Stud Earrings from $250</li>
-                    </ul>
-                </div>
+    /* this is also a row / flex container */
+    .hero .caption {
+      height:100%;
+    }
 
-            </div>
-        </div>
-    </body>
+    .hero .caption * {
+      padding:0 1em;
+      flex-grow:1;
+      flex-basis:10em;
+      align-self:flex-end;
+    }
+    
+    /* since the parent is a flex parent, the divs default to the 
+    * horizontal direction and split the parent width evenly 
+    * to fill the entire width of the container. */
+    .feature {
+
+    }
+
+    .feature .feature-pic {
+     width:100%;
+     height:auto;
+   }
+  </style>
+</head>
+
+ <body>
+  <main class="wrapper">
+    <header class="site-header">
+      <div class="row meta">
+
+        <form class="search">
+          <fieldset>
+            <label for="search">
+              <span>search</span>
+              <input type="text" name="search">
+            </label>
+            <input type="submit" value="go">
+          </fieldset>
+        </form>
+
+      </div>
+
+      <div class="row logo">
+        <img src="" alt="Widgco Inc.">
+      </div>
+
+      <nav class="row main-nav">
+        <a class="lnk" href="#"><span>Diamonds</span></a>
+        <a class="lnk" href="#"><span>Engagement Rings</span></a>
+        <a class="lnk" href="#"><span>Wedding</span></a>
+        <a class="lnk" href="#"><span>Jewelry &amp; Gifts</span></a>
+        <a class="lnk" href="#"><span>Designers</span></a>
+        <a class="lnk" href="#"><span>Education</span></a>
+      </nav>
+    </header>
+
+    <figure class="hero">
+      <figcaption class="row caption">
+        <h1>Hero Image Here</h1>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quibusdam eveniet quas dicta at  quis!
+        </p>
+      </figcaption>
+    </figure>
+
+    <section class="row products">
+
+      <article class="feature">
+        <h3>Diamond Jewelry</h3>
+        <img class="feature-pic" src="pic1.jpg" alt="jewels" />
+        <ul>
+          <li>Build Your Own Earrings®</li>
+          <li>Build Your Own Diamond Pendant®</li>
+          <li>Pre-set Diamond Stud Earrings from $250</li>
+        </ul>
+      </article>
+
+      <article  class="feature">
+        <h3>Diamond Jewelry</h3>
+        <img class="feature-pic" src="pic1.jpg" alt="jewels" />
+        <ul>
+          <li>Build Your Own Earrings</li>
+          <li>Build Your Own Diamond Pendant</li>
+          <li>Pre-set Diamond Stud Earrings from $250</li>
+        </ul>
+      </article>
+
+      <article  class="feature">
+        <h3>Diamond Jewelry</h3>
+        <img class="feature-pic" src="pic1.jpg" alt="jewels" />
+        <ul>
+          <li>Build Your Own Earrings</li>
+          <li>Build Your Own Diamond Pendant</li>
+          <li>Pre-set Diamond Stud Earrings from $250</li>
+        </ul>
+      </article>
+
+    </section>
+
+    <footer class="row">
+      footer
+    </footer>
+  </main>
+</body>
 </html>
-        
